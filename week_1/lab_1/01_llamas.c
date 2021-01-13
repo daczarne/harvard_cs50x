@@ -1,10 +1,13 @@
 #include <cs50.h>
 #include <stdio.h>
 
+// Prototype
+int get_int_greater_nine(void);
+
 int main(void)
 {
   // TODO: Prompt for start size
-  int start = get_int("Start size: ");
+  int start = get_int_greater_nine();
 
   // TODO: Prompt for end size
   int end = get_int("End size: ");
@@ -22,4 +25,14 @@ int main(void)
 
   // TODO: Print number of years
   printf("%i\n", n);
+}
+
+int get_int_greater_nine(void)
+{
+  int n;
+  do
+  {
+    n = get_int("Start size: ");
+  } while (n < 9);
+  return n;
 }
