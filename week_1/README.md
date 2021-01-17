@@ -92,3 +92,129 @@ Logical operators include *AND* (represented by `&&`), *OR* (represented by `||`
 
 # Conditional statements
 
+Conditional statements allow your programm to make decisions and take different forks in the road.
+
+## `if` statements
+
+We declare `if` statements as follows:
+
+``` c
+if (boolean-expression)
+{
+  // Do something...
+}
+```
+
+When the *boolean-expression* evaluates to `true` then the body of the `if` statement will be executed. Otherwise, the program will ignore everything in there.
+
+## `if else` statements
+
+We declare `if else` statements as follows:
+
+``` c
+if (boolean-expression)
+{
+  // Do something...
+}
+else
+{
+  // Do something else...
+}
+```
+
+Like with the `if` statement, when the *boolean-extression* evaluates to `true` then the body of the `if` clause will be evaluated, but not the body of the `else` clause. Likewise, if the *boolean-expression* evaluates to `false`, then the body of the `else` clause will be evaluated, but not the body of the `if` clause. So in summary: *do this, if a condition is met, otherwise, do that*.
+
+## `else if` statements
+
+We can nest `else`s and `if`s with the `else if` statement. It's declared as follows:
+
+``` c
+if (bool-exp1)
+{
+  // branch one
+}
+else if (bool-exp2)
+{
+  // branch two
+}
+else if (bool-exp3)
+{
+  // branch three
+}
+else
+{
+  // branch four
+}
+```
+
+Here, when *bool-exp1* (short for *boolean-expression-1*) evaluates to `true`, the the first branch of code will be executed. If it evaluates to `false` and *bool-exp2* evaluates to `true` then the second branch of code will be evaluated. We can nest as many `else if` clauses as we need. Keep in mind that they are evaluated in order, so once `C` finds a condition that is staisfied, it will evaluate that branch and not the rest. As always, an `else` clause is optional.
+
+When we need to allow for multiple conditions to be satisfied, we use multiple `if` statements, like so
+
+``` c
+if (bool-exp1)
+{
+  // branch one
+}
+
+if (bool-exp2)
+{
+  // branch two
+}
+
+if (bool-exp3)
+{
+  // branch three
+}
+else
+{
+  // branch four
+}
+```
+
+## `switch` statements
+
+The `switch` statements is used to enumerate a discrete number of distinct cases. We use this statment as follows:
+
+``` c
+switch(x)
+{
+  case 1:
+    printf("One!\n");
+    break;
+  case 2:
+    printf("Two!\n");
+    break;
+  case 3:
+    printf("Three!\n");
+    break;
+  default:
+    printf("Game-over!\n");
+}
+```
+
+Suppose `x` is an `int` that may take values 1, 2, or 3. So when the programm reaches this `swtich` statement, if `x` is 1 it will print out "One!", if `x` is 2 it will print out "Two!", if `x` is 3 it will print out "Three!", and if `x` is anything other 1, 2, or 3 it will print out "Game-over!". The `default` branch is optional but recommended.
+
+We use the `break` clause so that the programm does not *fall through* with the cases. If we don't use it, `C` will start execution at the `case` that meets the criteria, and follow through with executing the others, even the `default`.
+
+## `?:` statements
+
+This statement is sometimes called the *ternary operator*. If is a short hand for an `if else` statement. So the following two snippets are equivalent:
+
+``` c
+int x;
+if (expr)
+{
+  x = 5;
+}
+else
+{
+  x = 6;
+}
+```
+
+``` c
+int x = (expr) ? 5 : 6;
+```
+
+Whatever is after the question mark ,`?`, is what `x` will be if the `expr` is `true`. Whatever is after the colon, `:`, is what `x` will be if `expr` is `false`.
