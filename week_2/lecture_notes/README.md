@@ -1,6 +1,6 @@
 # Week 2 - Lecture Notes
 
-## Command Line Arguments
+## Command-Line Arguments
 
 When we call `make hello` on the terminal, we are actually calling a more complex command to give the computer an instruction of how to complie our code. `clang` is the compiler we are using. If we just run `clang hello.c` we'll get an output called `a.out` which stands for *Assembly output*.
 
@@ -92,4 +92,45 @@ float average(int length, int array[])
 }
 ```
 
-Variables of type `string` are arrays of `char`s. We can thus access the different positions of the array with the `[]` operator.
+## Arrays of arrays
+
+Variables of type `string` are arrays of `char`s. We can thus access the different positions of the array with the `[]` operator. We can also use arrays of arrays to create sentences.
+
+``` c
+string words[2];
+words[0] = "HI!";
+words[1] = "BYE!";
+```
+
+Now `words[0]` will evaluate to `"HI!\0"` and, for example, `words[0][0]` will evaluate to `H`.
+
+## `int main(void)`
+
+So far we've used `main(void)`. But we can change this. The goal of letting `main` take arguments, is that these arguments are going to be supplied by the user as command-line arguments.
+
+``` c
+#include <stdio.h>
+
+int main(int argc, string argv[])
+{
+
+}
+```
+
+The `argc` and `argv[]` arguments are used by convention. What we are telling `C` here is that the user will supply an array of strings in `argv[]` (it stands for *argument vector*). `argc` on the other hand (which stands for *argument count*) is the number of inputs that the user will use in the command-line.
+
+We using these programs we run
+
+``` shell
+./program_name arg1 arg2 arg3
+```
+
+The first position of the `argv` vector (that is, `argv[0]`) is always reserved for the name of the programm.
+
+The `int` at the begining of the line refers to the file output status (technically called the *exit status*). If there were no errors while running the program, then it will be 0. Otherwise, the integer we get makes reference to a certain type of error.
+
+After running a program, we can see the exit status by running
+
+``` shell
+echo $?
+```
