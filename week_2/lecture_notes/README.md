@@ -46,3 +46,48 @@ One way of debugging logical errors is to use the `printf` function. Since code 
 Other more sophisticated tools for debugging are called **debuggers**. These are programs that every languge has that allow us to run the program step by step and peak into the execution process.
 
 When using debuggers, we need to set *breakpoint* in our code so that the execution stops at that point and we can inspect the state of our program before continuing.
+
+## Arrays
+
+An array is a squence of values stored in memory. Think of it a list of values. We decalre an awway in `C` as follows
+
+``` c
+int scores[3];
+```
+
+With this `C` will build an array of integer three values, and it will call that array `scores`. To assign values to the array, we use
+
+``` c
+scores[0] = 72;
+scores[1] = 73;
+scores[2] = 33;
+```
+
+Notice that `C` uses 0-indexing.
+
+---
+Side note
+
+We use the qualyfier `const` to declare a variable as a constant varaible. That means that that variable cannot be changes through out the execution of our program. If we try to change it, we'll get an error.
+
+``` c
+const int TOTAL = 10;
+```
+
+By convention, when using constants, we capitalize them.
+
+---
+
+To pass an array into a function, we need to tell the function that the argument is an array by using the `array[]` in its list of argument
+
+``` c
+float average(int length, int array[])
+{
+  float sum = 0;
+  for (int i = 0; i < length; i++)
+  {
+    sum += array[i];
+  }
+  return sum / length;
+}
+```
