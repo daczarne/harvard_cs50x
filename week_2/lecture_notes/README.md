@@ -91,3 +91,5 @@ float average(int length, int array[])
   return sum / length;
 }
 ```
+
+Variables of type `string` are arrays of `char`s. We can thus access the different positions of the array with the `[]` operator.
