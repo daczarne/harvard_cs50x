@@ -2,7 +2,6 @@
 [Operators](#operators)  
 [Conditional statements](#conditional-statements)  
 [Loops](#loops)  
-[Command Line](#command-line)  
 
 # Data types
 
@@ -218,3 +217,69 @@ int x = (expr) ? 5 : 6;
 ```
 
 Whatever is after the question mark ,`?`, is what `x` will be if the `expr` is `true`. Whatever is after the colon, `:`, is what `x` will be if `expr` is `false`.
+
+# Loops
+
+Loops are used to execute the same lines of code over and over again. 
+
+## `while` loops
+
+We use a `while` loop to execute a body of code as long as a condition holds `true`. This is very useful when we don't know exactly how many times the code should be executed. We define a `while` loop as follows:
+
+``` c
+while (boolean-expression)
+{
+  // Code to execute
+}
+```
+
+When using `while` loops it is usually the case that we'll need to keep track of a counter or index variable. We need to remember to augment the counter at each iteration. So, for example, if we want to print every integer between 1 and 100 in the screen, we could use
+
+``` c
+int i = 1;
+while (i <= 100)
+{
+  printf("%i\n", i);
+  i++;
+}
+```
+
+If we need to stop (*kill*) a program (maybe because it's stuck in an infinte `while` loop, just press `Ctrl + c`).
+
+## `do while` loops
+
+These are similar to `while` loops, but they first evaluate, and then check the condition. When the condition is `false` they break out of the loop.
+
+``` c
+do
+{
+  // stuff to do
+}
+while (boolean-expression);
+```
+
+Unlike `while` loops, `do while` loops are guranteed to run at least once.
+
+## `for` loops
+
+We use `for` loop to repeat a task a specific number of times. Their syntax is as follows:
+
+``` c
+for (int i = 0; i < 10; i++)
+{
+  // Something to do...
+}
+```
+
+What this is doing is telling `C` to do is to repeat the operation, starting at 0 and stopping at 10, while incrementing the counter by 1 at each iteration.
+
+More generally, the syntax of a `for` loop is as follows
+
+``` c
+for (start; expression; increment)
+{
+  // Something to do...
+}
+```
+
+So `C` will first *start* by initializing the counter or counters (yes, we may have more than one). Then it will check if the *expression* is `true`. Then it will *increment* the counter (or counters). Lastly, it will execute the body of the loop. After that, `C` will only execute the expressions in *expression* and *increment* before each iteration. As long as the *expression* evaluates to `true` the counter (or counters) will be incremented, and the body of the loop executed.
