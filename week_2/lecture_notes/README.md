@@ -43,3 +43,6 @@ Finally, the **linking** step includes bringing into your assembled code (the 0s
 
 One way of debugging logical errors is to use the `printf` function. Since code is executed top to bottom, we can include `printf` calls in our code to see what the value of a variable is at that stage in the execution.
 
+Other more sophisticated tools for debugging are called **debuggers**. These are programs that every languge has that allow us to run the program step by step and peak into the execution process.
+
+When using debuggers, we need to set *breakpoint* in our code so that the execution stops at that point and we can inspect the state of our program before continuing.
