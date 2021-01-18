@@ -1,7 +1,10 @@
+# Week 1 Shorts
+
 [Data types](#data-types)  
 [Operators](#operators)  
 [Conditional statements](#conditional-statements)  
 [Loops](#loops)  
+[Command Line](#command-line)  
 
 # Data types
 
@@ -283,3 +286,39 @@ for (start; expression; increment)
 ```
 
 So `C` will first *start* by initializing the counter or counters (yes, we may have more than one). Then it will check if the *expression* is `true`. Then it will *increment* the counter (or counters). Lastly, it will execute the body of the loop. After that, `C` will only execute the expressions in *expression* and *increment* before each iteration. As long as the *expression* evaluates to `true` the counter (or counters) will be incremented, and the body of the loop executed.
+
+# Command Line
+
+## `ls`
+
+The `ls` command (short for *list*) will give you a list of all files and folders on the current directory.
+
+## `cd`
+
+The `cd <directory_name>` command (short for *change directory*) allows us to change the current directory and navigate into the one supplied to the command.
+
+The shorthand name for the current directory is `.` (a dot), and the shorthand name for its parent directory is `..` (two dots). The shorthand name for the root directory is `~` (tilda).
+
+## `pwd`
+
+This command is short for *present working directory* and it will print the name of the working directory you are currently in.
+
+## `mkdir`
+
+This command is short for *make directory* and it allows us to create a new directory which will be a direct child of the current directory we are in. To use it, we run `mkdir <directory_name>`.
+
+## `cp`
+
+We use the `cp` command to *copy* files. It takes two arguments: `cp <source> <destination>`, where `<source>` is the name of the file that we want to copy, and `<destination>` is destintion to which we want to copy the file (aka where to paste it).
+
+To copy an entire directory we use `cp -r <source directory> <destination directory>`. This will copy all the content inside of the `<source directory>` and paste it inside of the `<destination directory>`. The `-r` stands for *recursively*.
+
+## `rm`
+
+We use the `rm <file_name>` command to *remove* files. In some OSs the command line will ask you for a confirmation. You can skip this confirmation by adding the `-f` flag before the name of the file (where `-f` stands for *force*).
+
+Just as when copying, if we want to delete a directory with need to include the `-r` flag. If we don't want to be asked for confirmation at each step of the recursion, we can combine the flags (or pass them separately). So, `rm -rf <directory_name` will delete the directory and eveything inside of it without asking for confirmation.
+
+## `mv`
+
+We use the `mv <source> <destination>` command to move a file from one destination to another. We can use this command to rename files too.
