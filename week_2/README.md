@@ -39,6 +39,11 @@ When a function takes no arguments, we declare and define it as taking a `void` 
 
 # Variables and Scope
 
+Scope is a characteristic of a variable that determines from which functions that variable can be accessed. Variables can have a *local* scope, or a *global* scope.
+
+Local variables can only be accessed withing the functions in which they are created. They are defined inside the function in which they are used.
+
+Gobal variables can be accessed by any function in the program. They are created outside the functions (in the main program).
 
 # Arrays
 
