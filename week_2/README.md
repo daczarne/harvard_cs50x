@@ -47,8 +47,53 @@ Gobal variables can be accessed by any function in the program. They are created
 
 # Arrays
 
+Arrays are collections of values of the same data type that we can refer to with one name. Each member of that collection is called an *element*. Each element of the array can be accessed by its *index* number. Index numbers are sequential, integers, starting from 0.
+
+We need to keep in mind that `C` by itself will not prevent us from going out of bounds. Since the arrays are stored sequentially on memory, if we try accessing an index greater than *n-1*, at run time, `C` will return whatever is there.
+
+To declare an array we use
+
+``` c
+type name[size];
+```
+
+where *type* is the data type that all elements in the array will have, *name* is the reference to that array, and *size* is the number of elemnts that we want the array to hold.
+
+To assign values to the elements of an array we use
+
+``` c
+name[index] = value;
+```
+
+where *name* is the name of the array, *value* is the value to be assigned, and *index* is the position to which we want to assign that value.
+
+To initialize an array (that is, declare and assign in one step), we use
+
+``` c
+type name[size] = {v1, v2, ..., vn};
+```
+
+Elements will be assign in order, so the first value to the 0-index, the second value to the 1-index, and so on until the nth value is assigned to n-1 index. When we list the elements this way, we can omit the *size* and the compiler will still know what to do.
+
+Array elements can be of any data type, including other arrays. To access elements of an array that is inside another array we use two pairs of square brakets. So for instance,
+
+``` c
+array_name[index_i][index_j]
+```
+
+will return the j-th element of the i-th array in `array_name`. In memory though, this is just one array of length *i x j*.
+
+We can not assign one array to another array.
 
 # Command-Line Arguments
 
+To pass command line arguments into the program we change the input of main to be
 
+``` c
+int main(int argc, string argv[])
+{
+  // Program body
+}
+```
 
+Here *argc* is the number of command-line arguments, and *argv[]* is a string array of the different command line arguments. *argv[0]* is always the name of the program.
