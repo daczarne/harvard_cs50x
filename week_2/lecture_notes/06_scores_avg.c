@@ -6,7 +6,7 @@ const int TOTAL = 3;
 int main(void)
 {
   int scores[TOTAL];
-  for (int = 0; i < TOTAL; i++)
+  for (int i = 0; i < TOTAL; i++)
   {
     scores[i] = get_int("Score: ");
   }
