@@ -24,7 +24,7 @@ Just as the big-O notation describes the upper-bound of an algorithms running ti
 
 ## Creating data types
 
-Suppose we want to create a data type called `person` that stores the name and his/her's phone number. Both will be stored as strings. To do so we use the following syntax at the top of our code (after the `#include`s):
+Suppose we want to create a data type called `person` that stores the name and his/her's phone number. Both will be stored as strings. To do so we use the following syntax:
 
 ``` c
 typedef struct
