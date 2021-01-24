@@ -22,3 +22,34 @@ Just as the big-O notation describes the upper-bound of an algorithms running ti
 
 **Binary search** is checking the middle first. Then deciding whether the searched-for item is on the left half or the right half. Descard the half where we know that it can not be. Then repeat with the other half, zeroing in until you find the item. Binary search requiered that the array be sorted. This is a `O(log n)` and `Omega(1)` algorithm.
 
+## Creating data types
+
+Suppose we want to create a data type called `person` that stores the name and his/her's phone number. Both will be stored as strings. To do so we use the following syntax at the top of our code (after the `#include`s):
+
+``` c
+typedef struct
+{
+  string name;
+  string number;
+}
+person;
+```
+
+Here `typedef` is just the keyword we use to tell `C` that we are going to be defining a new data type. `struct` is also a keyword and it tells `C` that our data type has a structure. We refer to these as **data structures**. We are just tellinh `C` that this data type has a structure or composition to it.
+
+Next, in between curly braces, we list the components of our data structure, by specifying its data type and name. After that we supply the name of our data structure.
+
+The goal when creating new data structures is to keep related data together. We can refer to the **fields** of a data structure using the dot operator `.` followed by the name of the field. So, suppose that `people` is an array of `person`s, we can access the name of the first person in that array by
+
+``` c
+// Intialization
+person people[2];
+people[0].name = "Brian";
+people[0].number = "+1-617-495-1000";
+people[1].name = "David";
+people[1].number = "+1-949-468-2750";
+
+// Accessing the first person
+people[0].name
+```
+
