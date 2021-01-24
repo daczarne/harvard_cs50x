@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: Because it's the best performing algorithm when the list is already sorted, as complexity theory says it should. Namely, Omega(n).
+
+sort2 uses: Merge sort
+
+How do you know?: Because it's the best performing algorithm when the list is in reverse order (the most extreme case of unsortedness). Algorithmic complexity theory says that merge sorting should be the best performing algorithm in this cases.
+
+sort3 uses: Selection sort
+
+How do you know?: Because it performs ruoughly the same way regardless of whether the list is sorted or not and it's the slowest (along with sort1) when the list is in reverse order.
