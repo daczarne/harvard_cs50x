@@ -1,4 +1,4 @@
-# Week 1 Shorts
+# Week 1 - Shorts
 
 [Data types](#data-types)  
 [Operators](#operators)  
