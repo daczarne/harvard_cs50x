@@ -1,3 +1,5 @@
+# Week 2 - Shorts
+
 [Functions](#functions)  
 [Variables and Scope](#variables-and-scope)  
 [Arrays](#arrays)  
