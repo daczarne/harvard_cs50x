@@ -14,4 +14,11 @@ Generally, we speak of algorithms been:
 - `O(log n)`: halves the problem at each step.
 - `O(1)`: constant number of steps.
 
-Just as the big-O notation describes the upper-bound of an algorithms running time, we use capital omega $\Omega$ to describe the lower bound.
+Just as the big-O notation describes the upper-bound of an algorithms running time, we use capital omega to describe the lower bound. The bounds are the same as with big-O.
+
+## Search
+
+**Linear search** is checking each element in the array one after the other. This is an `O(n)` algorithm since it requieres 1 step per array index at the worst, and an `Omega(1)` at the best case scenario (if the searched for item is at index 0).
+
+**Binary search** is checking the middle first. Then deciding whether the searched-for item is on the left half or the right half. Descard the half where we know that it can not be. Then repeat with the other half, zeroing in until you find the item. Binary search requiered that the array be sorted. This is a `O(log n)` and `Omega(1)` algorithm.
+
