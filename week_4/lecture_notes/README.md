@@ -77,3 +77,16 @@ We can also use the function `strcpy(t, s)` to copy the string `s` into the stri
 When using `malloc` we need to then use the function `free` to release the memory and give it back to the OS for other operations.
 
 To chase bugs on memory we use `valgrind`. A debbuger for memory. We run it in the command line with `valgrind ./<program>`.
+
+## Garbage
+
+Stuff in memory just lays around. The computer doesn't initialize variables for you unless you specifically tell it to place a certain value in a variable. So if we declare a variable, and don't assign a value to it, then the computer will point to whatever value is there already. This value might be result of a previous computation that we did in this program or in another one. We refer to these values as **garbage values**.
+
+The only exception to this no-declare-on-init rule is for global variables. Global variables are initialized to zero or `NULL`.
+
+## Swapping values
+
+To swap two variables we need to understand how the CPU uses memory. The first chunk of memory(think of it as top part of the physical hardware) is used for machine code. This is were the programs are run.
+
+After that comes all the global variables. 
+heap big chunk of memory that malloc uses
