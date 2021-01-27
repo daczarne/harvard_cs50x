@@ -92,6 +92,39 @@ After that comes all the global variables. Next comes the `heap`. This is a big 
 
 Last comes the `stack`. The stack starts at the *"bottom"* and starts filling in values to the top. The stack space is what functions use to run.
 
-![]("week_4/lecture_notes/memory.png")
+![](memory.png)
 
+## heap overflow & stack overflow
+
+A **stack overflow** is what happens when a function gets called so many times, that it overflows the heap. If this happens, the program will crush. The opposite is called a **heap overflow**.
+
+## buffer overflow
+
+A buffer is a chunck of memory. A **buffer overflow** is what happens when we go beyond that amount (for example, iterating past the end of an array).
+
+## `scanf`
+
+We use the function `scanf` to get input from the user. When we want to get string input memory allocation becomes a problem, because we don't know who long a string the user will input.
+
+If the `char` is declared using `malloc` the memory comes from a frame on the `head`. When using `malloc` we need to remember to then use `free` to release the memory allocated.
+
+``` c
+char s = malloc(4);
+```
+
+If instead, the `char` is declared using an array bracket notation, the memory comes from a fram on the `stack`.
+
+``` c
+char s[4];
+```
+
+Not that we don't need to use `char *s` because `s` is already a memory address.
+
+## Files
+
+We can read and write data to files using the `fileio.h` library. To declare a pointer to a file we use the `FILE` data type.
+
+To open the file we use the `fopen` function. This function takes two values, the name of the file (including its extension) and an opening  mode: "r" for read, "w" for write, and "a" for appending. 
+
+Once we open the file, we can write new data to it using the `fprintf` function. When done working with the file we need to call `fclose(file)`, where `file` is the pointer to the file we where using.
 
