@@ -88,5 +88,10 @@ The only exception to this no-declare-on-init rule is for global variables. Glob
 
 To swap two variables we need to understand how the CPU uses memory. The first chunk of memory(think of it as top part of the physical hardware) is used for machine code. This is were the programs are run.
 
-After that comes all the global variables. 
-heap big chunk of memory that malloc uses
+After that comes all the global variables. Next comes the `heap`. This is a big chunk of memory that malloc uses to get you some spare memory.
+
+Last comes the `stack`. The stack starts at the *"bottom"* and starts filling in values to the top. The stack space is what functions use to run.
+
+![]("week_4/lecture_notes/memory.png")
+
+
