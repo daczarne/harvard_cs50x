@@ -1,7 +1,8 @@
 # Week 4 - Shorts
 
 [Pointers](#pointers)  
-[Custom Data Types](#custom-data-types)  
+[Custom data types](#custom-data-types)  
+[Dynamic memory allocation](#dynamic-memory-allocation)  
 
 
 ## Pointers
@@ -22,7 +23,7 @@ Pointers are best declared in individual lines. But, if we want to declare multi
 int* pa, *pb, *pc;
 ```
 
-## Custom Data Types
+## Custom data types
 
 With the `typedef` keyword we can define new data types or rewrite names for data types. To do se, we define a type in the normal way, and then alias it to something else.
 
@@ -48,5 +49,84 @@ typedef struct car
   double engine_size;
 }
 car_t;
+```
+
+## Dynamic memory allocation
+
+We can use pointers to get access to a block of dynamically-allocated memory at runtime. This memory comes from a pool of memory called the `heap` (unlike function calls which are executed in a pool of memory called `stack`).
+
+To get memory at runtime we use the `malloc` function (*memory allocator*). This function takes as a parameter the number of bytes that we are requesting. It will return a pointer to the memory location that it has assigned. If, for some reason, `malloc` can't allocate memory, it will return `NULL`. This is way, after every `malloc` call, we need to check whether the return value was `NULL`. If it was, then we need to terminate the program (it's going to crush anyway if we don't terminate it).
+
+``` c
+// statically obtain an integer
+int x;
+// dunamically obtain an integer
+int *px = malloc(sizeof(int));
+```
+
+Unlike statically-allocated memory, dynamically-allocated memory is not automatically returned to the system for later use when the function in which it's created finishes execution. We need to explicitly free the memory by calling the `free()` function and pass it the name of the pointer to free-up as an argument. Failing to free the memory results in a **memory leak**.
+
+Do not `free` statically-allocated memory, and only `free` dynamically-allocated memory once!!
+
+As an exmaple
+
+``` c
+// Create an integer variable called m in the stack.
+int m;
+// Create a pointer called a to an integer. The pointer is in the stack.
+int* a;
+// Create a pointer called b to an integer.
+// Here we've allocated two chunks of memory. One for the pointer
+// and one for the variable it points to.
+// The vairable (which does not have a name) is on the heap.
+// But the pointer b is on the stack.
+int* b = malloc(sizeof(int));
+```
+
+![](./dynamically_allocated_memory_1.png)
+
+``` c
+// a gets m's address
+// This means that a now points to m
+a = &m;
+```
+
+![](./dynamically_allocated_memory_2.png)
+
+``` c
+// Changes where a is pointing too (the address it holds)
+// a no points to where b points (since b is a pointer itself)
+// This is not to be confused with a pointing to b
+// To do that we use a = &b
+a = b;
+```
+
+![](./dynamically_allocated_memory_3.png)
+
+``` c
+// Set the value of m to be 10
+m = 10;
+// Dereference b (*b) with the value of m + 2
+// This means that we are setting the unnamed variable to which b is
+// pointing to, to be 12 (m + 2)
+*b = m + 2;
+```
+
+![](./dynamically_allocated_memory_4.png)
+
+``` c
+// Release the memory used by the variable to which
+// the pointer b points to
+free(b);
+```
+
+![](./dynamically_allocated_memory_5.png)
+
+``` c
+// This would cause the variable to which a
+// is pointing to be dereferenced with the 
+// value 11. But since we've free'd up that 
+// memory, it will cause a seg-fault
+*a = 11;
 ```
 
