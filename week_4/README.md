@@ -1,6 +1,7 @@
 # Week 4 - Shorts
 
 [Pointers](#pointers)  
+[Custom Data Types](#custom-data-types)  
 
 
 ## Pointers
@@ -19,5 +20,33 @@ Pointers are best declared in individual lines. But, if we want to declare multi
 
 ``` c
 int* pa, *pb, *pc;
+```
+
+## Custom Data Types
+
+With the `typedef` keyword we can define new data types or rewrite names for data types. To do se, we define a type in the normal way, and then alias it to something else.
+
+``` c
+typedef <old_name> <new_name>;
+```
+
+For example, we can use
+
+``` c
+typedef char* string;
+```
+
+We can also use the `struct` data type to define new complex data types. For example,
+
+``` c
+typedef struct car
+{
+  int year;
+  char model[10];
+  char plate[7];
+  int odometer;
+  double engine_size;
+}
+car_t;
 ```
 
