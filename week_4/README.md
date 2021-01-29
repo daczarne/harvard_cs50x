@@ -75,9 +75,8 @@ As an exmaple
 int m;
 // Create a pointer called a to an integer. The pointer is in the stack.
 int* a;
-// Create a pointer called b to an integer.
-// Here we've allocated two chunks of memory. One for the pointer
-// and one for the variable it points to.
+// Create a pointer called b to an integer. 
+// Here we've allocated two chunks of memory. One for the pointer and one for the variable it points to.
 // The vairable (which does not have a name) is on the heap.
 // But the pointer b is on the stack.
 int* b = malloc(sizeof(int));
@@ -95,9 +94,8 @@ a = &m;
 
 ``` c
 // Changes where a is pointing too (the address it holds)
-// a no points to where b points (since b is a pointer itself)
-// This is not to be confused with a pointing to b
-// To do that we use a = &b
+// a now points to where b points (since b is a pointer itself)
+// This is not to be confused with a pointing to b. To do that we use a = &b
 a = b;
 ```
 
@@ -106,27 +104,20 @@ a = b;
 ``` c
 // Set the value of m to be 10
 m = 10;
-// Dereference b (*b) with the value of m + 2
-// This means that we are setting the unnamed variable to which b is
-// pointing to, to be 12 (m + 2)
+// Dereference b (*b) with the value of m + 2. This means that we are setting the unnamed variable to which b is pointing to, to be 12 (m + 2)
 *b = m + 2;
 ```
 
 ![](./dynamically_allocated_memory_4.png)
 
 ``` c
-// Release the memory used by the variable to which
-// the pointer b points to
+// Release the memory used by the variable to which the pointer b points to
 free(b);
 ```
 
 ![](./dynamically_allocated_memory_5.png)
 
 ``` c
-// This would cause the variable to which a
-// is pointing to be dereferenced with the 
-// value 11. But since we've free'd up that 
-// memory, it will cause a seg-fault
+// This would cause the variable to which a is pointing to be dereferenced with the value 11. But since we've free'd up that memory, it will cause a seg-fault
 *a = 11;
 ```
-
