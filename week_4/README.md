@@ -104,7 +104,8 @@ a = b;
 ``` c
 // Set the value of m to be 10
 m = 10;
-// Dereference b (*b) with the value of m + 2. This means that we are setting the unnamed variable to which b is pointing to, to be 12 (m + 2)
+// Dereference b (*b) with the value of m + 2.
+// This means that we are setting the unnamed variable to which b is pointing to, to be 12 (m + 2)
 *b = m + 2;
 ```
 
@@ -118,6 +119,7 @@ free(b);
 ![](./dynamically_allocated_memory_5.png)
 
 ``` c
-// This would cause the variable to which a is pointing to be dereferenced with the value 11. But since we've free'd up that memory, it will cause a seg-fault
+// This would cause the variable to which a is pointing to be dereferenced with the value 11.
+// But since we've free'd up that memory, it will cause a segmentation fault
 *a = 11;
 ```
