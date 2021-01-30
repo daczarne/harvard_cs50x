@@ -3,7 +3,7 @@
 [Pointers](#pointers)  
 [Custom data types](#custom-data-types)  
 [Dynamic memory allocation](#dynamic-memory-allocation)  
-
+[Call stacks](#call-stacks)
 
 ## Pointers
 
@@ -123,3 +123,9 @@ free(b);
 // But since we've free'd up that memory, it will cause a segmentation fault
 *a = 11;
 ```
+
+## Call stacks
+
+When we call a function a chunk of memory is assigned for that function to do its necessary work. We call these chunks of memory **stack frames** or **function frames**. If it possible that more than one stack frame exists at any given time. This happens when we have functions (such as `main`) that call other functions. Yet, only the frame of the function that is running is active at any given time. These frames are arranged in a stack with the most recently called function at the top of the stack. When a new function is called, a new frame is **pushed** onto the top of the stack and becomes the new active frame. When a function finishes its work, the frame is **popped** off of the stack and the frame immediatly below becomes the active frame and continus its execution from where it left off.
+
+
