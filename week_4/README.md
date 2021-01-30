@@ -3,7 +3,8 @@
 [Pointers](#pointers)  
 [Custom data types](#custom-data-types)  
 [Dynamic memory allocation](#dynamic-memory-allocation)  
-[Call stacks](#call-stacks)
+[Call stacks](#call-stacks)  
+[File pointers](#file-pointers)  
 
 ## Pointers
 
@@ -128,4 +129,127 @@ free(b);
 
 When we call a function a chunk of memory is assigned for that function to do its necessary work. We call these chunks of memory **stack frames** or **function frames**. If it possible that more than one stack frame exists at any given time. This happens when we have functions (such as `main`) that call other functions. Yet, only the frame of the function that is running is active at any given time. These frames are arranged in a stack with the most recently called function at the top of the stack. When a new function is called, a new frame is **pushed** onto the top of the stack and becomes the new active frame. When a function finishes its work, the frame is **popped** off of the stack and the frame immediatly below becomes the active frame and continus its execution from where it left off.
 
+## File pointers
 
+File pointers and (variable) pointers are inter-related, but are not the same. The ability to read from and write to files is the primary means of stofing *persistent data*. To manage files is in `C` we use a data structure called `FILE`. When working with files we will almost always be using pointers to them, `FILE*`.
+
+The main file-manipulation in `C` can all be found in `stdio.h`. They all take a file pointer, `FILE*` as an argument, except `fopen` which is the function we use to get a pointer. The most important functions are...
+
+### `fopen`
+
+We use it to open a connection to a file, and it returns a pointer to the file that can be used in other function calls. Because its return value is a pointer we must always check that it is not `NULL`. We invoke `fopen` by
+
+``` c
+FILE* ptr = fopen(<file_name.ext>, <operation>);
+```
+
+where `FILE*` is the aforementioned file pointer, `ptr` is a generic name for a file, `<file_name.ext>` is the name of the file including its extension, and `<operation>` is what we want to do with that file. We use `r` for *read operations*, `a` for *append operations*, `w` is for *writing operations*. The difference between write and append is that the former overwrites the entire file while the latter adds new lines to the file.
+
+### `fclose`
+
+This function takes a `FILE*` pointer as an argument and closes the connection to it. WE use it as follows.
+
+``` c
+fclose(<file_pointer>);
+```
+
+Once a file is closed, we can't perfom any other I/O operations on that file (unless we open it again).
+
+### ``fgetc`
+
+We use this function to get the next `char` from the file pointed to. During the first call, it will return the first character. To do so, the file must have been opened with an `r` operation. We use this function as
+
+``` c
+char ch = fgetc(<file_pointer>);
+```
+
+To read every single `char` in a file we must use a loop.
+
+``` c
+char ch;
+while ((ch = fgetc(<file_pointer>)) != EOF)
+{
+  printf("%c", ch);
+}
+```
+
+`EOF` is a special character defined in `stdio.h` that signifies the **end of file** character. This is basically what the command-line command `cat` does.
+
+### `fputc`
+
+This function allows us to wrtie a single `char` to the pointed-to file. The operation of the file pointer must we either `w` or `a`. We use this function as follows:
+
+``` c
+fput(<character>, <file_pointer>);
+``` 
+
+We can replicate the command-line command `cp` as follows:
+
+``` c
+char ch;
+while ((ch = fgetc(<file_pointer_to_copy_from>)) != EOF)
+{
+  fputc(ch, <file_pointer_to_copy_to>);
+}
+```
+
+### `fread`
+
+This is a generic version of `fgetc` that allows us to get any amount of information. We use it like so:
+
+``` c
+fread(<buffer>, <size>, <qty>, <file_pointer>);
+```
+
+This will read `<qty>` units of size `<size>` from the file pointed to by `<file_pointer>` and store it in memory in a buffer (usually an array) pointed-to by `<buffer>`. The file-pointer operation must be `r`.
+
+As an example
+
+``` c
+int arr[10];
+fread(arr, sizeof(int), 10, ptr);
+```
+
+Here we are creating an array called `arr` of lenght 10 and class `int` in the stack (this is our buffer). Then we will read `sizeof(int) * 10 = 40` bytes of information from a file pointed to by `ptr`, and store each one of those 10 chunks of information in `arr`, in the same order as the were read.
+
+We could also save our buffer in the heap by using dynamic-memory allocation like follows:
+
+``` c
+double* arr = malloc(sizeof(double) * 80);
+fread(arr, sizeof(double), 80, ptr);
+```
+
+Lastly, we could also treat `fread` as a call to `fgetc`. To do so we use
+
+``` c
+char c;
+fread(&c, sizeof(char), 1, ptr);
+```
+
+In the previous two examples we were using arrays. Arrays are just pointers to the first element in them, so this was OK for the `<buffer>` in `fread`. But now, we need to pass not the declared variables, but rather the address of the declared variable so that `fread` can write to that address in memory. So we use `&c`.
+
+### `fwrite`
+
+This is the writing vertion of `fread`. We use it like so
+
+``` c
+fwrite(<buffer>, <size>, <qty>, <file_pointer>);
+```
+
+The only thing to keep in mind here is that the pointer needs to be a `w` or `a` operation.
+
+### Other functions for files
+
+Other functions is `stdio.h` for working with files are
+
+- `fgets` and `fputs` are the same as `fgetc` and `fputc` but for entire strings.
+
+- `fprintf` writes a formated string to a file.
+
+- `fseek` allows to rewind or fast-forward within a file
+
+- `ftell` tells you at what byte position you are at within a file
+
+- `feof` tells you whether you've read to the endo of a file
+
+- `ferror` indicates whether an error has occurred in working with a file.
