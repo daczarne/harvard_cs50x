@@ -61,7 +61,7 @@ To get memory at runtime we use the `malloc` function (*memory allocator*). This
 ``` c
 // statically obtain an integer
 int x;
-// dunamically obtain an integer
+// dynamically obtain an integer
 int *px = malloc(sizeof(int));
 ```
 
