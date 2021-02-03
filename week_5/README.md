@@ -3,7 +3,6 @@
 [Singly-linked lists](#singly-linked-lists)  
 [Hash tables](#hash-tables)  
 [Tries](#tries)  
-[Data structures](#data-structures)  
 
 ## Singly-linked lists
 
@@ -54,8 +53,5 @@ We can resolve these issues by using **chaining**. The idea si that instead of p
 
 ## Tries
 
-
-
-## Data structures
-
+Tries combine structures and pointers together to store data. Each piece of data needs to be unique. The benefit of tries is that they are `O(1)` for insertion, deletion, and look up. The downside of them is that they are hugh in size.
 
