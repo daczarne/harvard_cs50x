@@ -68,3 +68,22 @@ bool search(node *tree, int number)
 ```
 
 Insertion of new elements into a binary search tree is an algorithm of `O(log n)` complexity. This is because for a tree of `n` nodes, it's height will be `log n`.
+
+## Hash tables
+
+A **hash table** is another data strcuture that is essentially an array of linked lists. To build one, we need a **hash function**: a function that takes a string (`char*`) as input and returns a number as output. In this case, the output is the array position of the linked-list to which the element needs to be added to.
+
+Searching a hash table is of `O(n)` asymptotic complexity, but in practice is generally `O(1)`.
+
+## Tries
+
+Also known as prefix tree. We typlically use it to store words and other complex data. It is a tree made out of arrays. Search and insertion in this data structures `O(1)`.
+
+## Abstract data struct
+
+These are data structures that are implemented with some other data structures as their building blocks.
+
+## Queue
+
+Is an abstract data structure that uses a FIFO enqueue (add) and dequeue (pop).
+
