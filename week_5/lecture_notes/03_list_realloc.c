@@ -26,9 +26,6 @@ int main(void)
   // Assign new element
   tmp[3] = 4;
 
-  // Free original list
-  free(list);
-
   // Rename list
   list = tmp;
 
@@ -39,5 +36,5 @@ int main(void)
   }
 
   // Free tmp
-  free(tmp);
+  free(list);
 }
