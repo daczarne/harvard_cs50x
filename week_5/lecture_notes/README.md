@@ -87,3 +87,10 @@ These are data structures that are implemented with some other data structures a
 
 Is an abstract data structure that uses a FIFO enqueue (add) and dequeue (pop).
 
+## Stack
+
+A data structure that uses LIFO for push (putting in) and pop (taking out).
+
+## Dictionaries
+
+A data type that uses key-value pairs.
