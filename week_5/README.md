@@ -54,4 +54,3 @@ We can resolve these issues by using **chaining**. The idea si that instead of p
 ## Tries
 
 Tries combine structures and pointers together to store data. Each piece of data needs to be unique. The benefit of tries is that they are `O(1)` for insertion, deletion, and look up. The downside of them is that they are hugh in size.
-
