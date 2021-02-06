@@ -12,13 +12,13 @@ typedef struct node
 } node;
 
 // Number of buckets in hash table
-const unsigned int N = 26;
+const unsigned int N = 5381;
 
 // Hash table
 node *table[N];
 
 // Count the words in the dictionary
-unsigned int dict_counter = 0;
+unsigned int word_counter = 0;
 
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
@@ -28,11 +28,19 @@ bool check(const char *word)
 }
 
 // Hashes word to a number
+/*
+    Trying out different options suggested in https://stackoverflow.com/questions/14409466/simple-hash-functions
+    since my original solution of N = 26 was going to be kinda slow
+*/
 unsigned int hash(const char *word)
 {
-    tolower(node.word[0]) - 97;
-    // TODO
-    return 0;
+    hash_table_position = N;
+    for (counter = 0; word[counter] != '\0'; counter++)
+    {
+        hash_table_position = ((hash_table_position << 5) + hash_table_position) + word[counter];
+    }
+
+    return table_hash_position;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -66,7 +74,7 @@ bool load(const char *dictionary)
         n->next = table[hash_table_position];
         table[hash_table_position] = n;
         // Augment number of words
-        dict_counter++;
+        word_counter++;
         // Check if end of file has been reached
         if (fscanf(dict, "%s", word) == EOF)
         {
@@ -82,8 +90,8 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    // Return the value in the word counter
+    return word_counter;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
