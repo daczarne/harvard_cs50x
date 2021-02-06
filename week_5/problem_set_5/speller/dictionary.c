@@ -23,7 +23,21 @@ unsigned int word_counter = 0;
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
+    // Hash the word
+    int hash_table_position = hash(word);
+    // Initialize a cursor set the pointer of the linked-list at that position
+    node *cursor = table[hash_table_position];
+    // Check if the word is in the list
+    while (cursor != NULL)
+    {
+        // If the word difference is zero, return true
+        if (strcasecmp(cursor->word, word) == 0)
+        {
+            return true;
+        }
+        cursor = cursor->next;
+    }
+    // If the end of the linked-list was reached, return false
     return false;
 }
 
