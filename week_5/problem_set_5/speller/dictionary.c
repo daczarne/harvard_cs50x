@@ -1,6 +1,11 @@
 // Implements a dictionary's functionality
 
 #include <stdbool.h>
+#include <strings.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 #include "dictionary.h"
 
@@ -48,13 +53,12 @@ bool check(const char *word)
 */
 unsigned int hash(const char *word)
 {
-    hash_table_position = N;
-    for (counter = 0; word[counter] != '\0'; counter++)
+    int hash_table_position = 0;
+    for (int counter = 0; word[counter] != '\0'; counter++)
     {
         hash_table_position = ((hash_table_position << 5) + hash_table_position) + word[counter];
     }
-
-    return table_hash_position;
+    return (hash_table_position % N);
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -75,8 +79,8 @@ bool load(const char *dictionary)
         // Read the word into memroy
         fscanf(dict, "%s", word);
         // Create a new node
-        node n * = malloc(sizeof(node));
-        if (node == NULL)
+        node *n = malloc(sizeof(node));
+        if (n == NULL)
         {
             return false;
         }
@@ -111,6 +115,25 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
+    // For each linked-list
+    for (int i = 0; i < N; i++)
+    {
+        // Define a cursor that will point to the next value that needs to be freed
+        node *cursor = table[i];
+        // While there are still elements to be freed
+        while (cursor)
+        {
+            // Create tmp that points to the ndoe that will be freed
+            node *tmp = cursor;
+            // Point cursor to the next node
+            cursor = cursor->next;
+            // Free tmp
+            free(tmp);
+        }
+        if (i == N - 1 && cursor == NULL)
+        {
+            return true;
+        }
+    }
     return false;
 }
