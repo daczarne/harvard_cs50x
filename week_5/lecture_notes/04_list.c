@@ -54,7 +54,7 @@ int main(void)
   list->next->next = n;
 
   // Print the linked list with a loop that reads like follows
-  // node *tmp = list: give me a temporary pointer to a node called tmp
+  // node *tmp = list: gives me a temporary pointer to a node called tmp
   // and initialize it to be whatever is at the beginning of the list.
   // tmp != NULL: keep executing the body of the loop so long as tmp is not null
   // tmp = tmp->next: after each iteration, update the tmp pointer  to be whatever
