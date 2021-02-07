@@ -1,12 +1,12 @@
 # Conditions and relational operators
 
-from cs50 import get_int
+import cs50
 
 # Prompt user for x
-x = get_int("x: ")
+x = cs50.get_int("x: ")
 
 # Prompt user for y
-y = get_int("y: ")
+y = cs50.get_int("y: ")
 
 # Compare x and y
 if x < y:
