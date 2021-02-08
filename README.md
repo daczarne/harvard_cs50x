@@ -1,4 +1,4 @@
-# Harvard's CS50x on Edx
+# Harvard's CS50 on Edx
 
 ![maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
 
