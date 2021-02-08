@@ -2,11 +2,6 @@
 
 ![maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
 
-![github repo size](https://img.shields.io/github/repo-size/daczarne/harvard_cs50x)
-![github code size](https://img.shields.io/github/languages/code-size/daczarne/harvard_cs50x)
-
-![github languages](https://img.shields.io/github/languages/count/daczarne/harvard_cs50x)
-![top language](https://img.shields.io/github/languages/top/daczarne/harvard_cs50x)
 
 - [Week 1 - C](https://github.com/daczarne/harvard_cs50x/tree/main/week_1)  
 - [Week 2 - Arrays](https://github.com/daczarne/harvard_cs50x/tree/main/week_2)  
