@@ -1,4 +1,4 @@
-# Course materials for CS50x on edx
+# Harvard's CS50x on Edx
 
 ![maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
 
