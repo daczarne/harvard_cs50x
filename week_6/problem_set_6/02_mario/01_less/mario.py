@@ -9,9 +9,4 @@ while True:
 
 # Print the blocks
 for i in range(height):
-    for j in range(height):
-        if j >= (height - (i + 1)):
-            print("#", end="")
-        else:
-            print(" ", end="")
-    print("\n", end="")
+    print(" " * (height - (i + 1)) + "#" * (i + 1))
