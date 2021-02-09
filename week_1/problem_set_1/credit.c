@@ -115,7 +115,7 @@ int return_sum_of_digits(long cc_number)
       // Build de sum term
       int sum_term = last_digit * 2;
 
-      // Find the lengtgh of the sum term
+      // Find the length of the sum term
       int sum_term_length = floor(log10(sum_term)) + 1;
 
       // If the sum term is greater than 9
@@ -129,7 +129,7 @@ int return_sum_of_digits(long cc_number)
         sum_term = units + tens;
       }
 
-      // Add the sum term to the accumulated sum od odds
+      // Add the sum term to the accumulated sum of odds
       sum_odds += sum_term;
     }
     else
