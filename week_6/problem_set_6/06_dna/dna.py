@@ -18,24 +18,34 @@ strs = {col_names[i]: 0 for i in range(len(col_names))}
 with open(sys.argv[2], "r") as f:
     sequence = f.read()
 
-# print(db)
-print(sequence)
-print(strs)
-
+# Compute matches
 for i in range(len(col_names)):
     target_str = col_names[i]
-    # print(target_str)
     target_str_len = len(target_str)
-    # print(target_str_len)
-    #loop_range = floor(len(sequence) / target_str_len)
-    # print(len(sequence))
-    #print(len(sequence) - target_str_len)
-    # print(loop_range)
-
-    for j in range(len(sequence) - target_str_len):
-        #print(f"i: {i} - {sequence[i:(i + target_str_len)]}, {target_str}", end="")
+    global_count = 0
+    j = 0
+    # Start checking one letter at a time
+    while j < (len(sequence) - target_str_len):
         if sequence[j:(j + target_str_len)] == target_str:
-            #print(" - yeah baby!")
-            strs[target_str] += 1
+            matching = True
+            local_count = 1
+            j += target_str_len
+            while matching and j < (len(sequence) - target_str_len):
+                if sequence[j:(j + target_str_len)] == target_str:
+                    local_count += 1
+                    j += target_str_len
+                    if local_count > global_count:
+                        global_count = local_count
+                else:
+                    matching = False
+                    j += 1
+                    if local_count > global_count:
+                        global_count = local_count
+        else:
+            j += 1
+    # Save the length of the longest chain
+    strs[target_str] = global_count
 
+
+# print(db)
 print(strs)
