@@ -7,7 +7,6 @@ if len(sys.argv) < 3:
     print("Usage: python dna.py data.csv sequence.txt")
     sys.exit(1)
 
-
 # Read csv into dictionaries
 people = []
 with open(sys.argv[1], "r") as f:
