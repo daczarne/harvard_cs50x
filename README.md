@@ -14,3 +14,4 @@
 - [Week 4 - Memory](https://github.com/daczarne/harvard_cs50x/tree/main/week_4)  
 - [Week 5 - Data Structures](https://github.com/daczarne/harvard_cs50x/tree/main/week_5)  
 - [Week 6 - Python](https://github.com/daczarne/harvard_cs50x/tree/main/week_6)  
+- [Week 7 - SQL](https://github.com/daczarne/harvard_cs50x/tree/main/week_7)  
