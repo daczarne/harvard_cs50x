@@ -76,3 +76,7 @@ http-server
 
 The IDE will use port `8080`.
 
+## CSS
+
+We use Cascading Style Sheets to style the HTML.
+
