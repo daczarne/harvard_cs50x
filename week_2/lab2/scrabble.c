@@ -10,44 +10,44 @@ int compute_score(string word);
 
 int main(void)
 {
-  // Get input words from both players
-  string word1 = get_string("Player 1: ");
-  string word2 = get_string("Player 2: ");
+    // Get input words from both players
+    string word1 = get_string("Player 1: ");
+    string word2 = get_string("Player 2: ");
 
-  // Score both words
-  int score1 = compute_score(word1);
-  int score2 = compute_score(word2);
+    // Score both words
+    int score1 = compute_score(word1);
+    int score2 = compute_score(word2);
 
-  // Find the winner
-  string winner;
+    // Find the winner
+    string winner;
 
-  if (score1 == score2)
-  {
-    winner = "Tie!";
-  }
-  else if (score1 > score2)
-  {
-    winner = "Player 1 wins!";
-  }
-  else
-  {
-    winner = "Player 2 wins!";
-  }
+    if (score1 == score2)
+    {
+        winner = "Tie!";
+    }
+    else if (score1 > score2)
+    {
+        winner = "Player 1 wins!";
+    }
+    else
+    {
+        winner = "Player 2 wins!";
+    }
 
-  // Print the winner
-  printf("%s\n", winner);
+    // Print the winner
+    printf("%s\n", winner);
 }
 
 int compute_score(string word)
 {
-  int score = 0;
-  for (int i = 0, n = strlen(word); i < n; i++)
-  {
-    int letter_position = (int)tolower(word[i]) - 97;
-    if (0 <= letter_position && letter_position <= 25)
+    int score = 0;
+    for (int i = 0, n = strlen(word); i < n; i++)
     {
-      score += POINTS[letter_position];
+        int letter_position = (int) tolower(word[i]) - 97;
+        if (0 <= letter_position && letter_position <= 25)
+        {
+            score += POINTS[letter_position];
+        }
     }
-  }
-  return score;
+    return score;
 }
