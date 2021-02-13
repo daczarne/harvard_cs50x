@@ -3,3 +3,5 @@
 *.md linguist-documentation=false
 *.sql linguist-detectable
 *.sql linguist-language=sql
+
+week_8/lecture_notes_8/source_code_8/large.js linguist-vendored
