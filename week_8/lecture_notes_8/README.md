@@ -64,4 +64,4 @@ will search for cats on Google.
 
 ## HTML
 
-
+Hypertext Markup Language is a markup language used to define the elements that need to be displayed on a webpage. It contains `tags` and `attributes`. 
