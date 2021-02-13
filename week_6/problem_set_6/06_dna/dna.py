@@ -1,5 +1,5 @@
 import sys
-import pandas as pd
+import csv
 from math import floor
 
 # Check number of arguments
@@ -7,11 +7,16 @@ if len(sys.argv) < 3:
     print("Usage: python dna.py data.csv sequence.txt")
     sys.exit(1)
 
-# Read the db into a pandas df
-db = pd.read_csv(sys.argv[1])
+
+# Read csv into dictionaries
+people = []
+with open(sys.argv[1], "r") as f:
+    reader = csv.DictReader(f)
+    for person in reader:
+        people.append(person)
 
 # Build a dict with the column names (to store the counts)
-col_names = list(db.columns)[1:]
+col_names = list(people[0].keys())[1:]
 strs = {col_names[i]: 0 for i in range(len(col_names))}
 
 # Read de DNA sequence to be checked
@@ -47,5 +52,22 @@ for i in range(len(col_names)):
     strs[target_str] = global_count
 
 
-# print(db)
-print(strs)
+# Find the person with these values
+found = False
+i = 0
+n = len(people)
+strs_values = list(strs.values())
+while not found and i < n:
+    # Get that person values
+    people_values = [int(i) for i in list(people[i].values())[1:]]
+    # If values are the same, we found the person
+    if people_values == strs_values:
+        found = True
+    else:
+        i += 1
+
+# Print the name of the person
+if not found:
+    print("No match")
+else:
+    print(people[i]["name"])
