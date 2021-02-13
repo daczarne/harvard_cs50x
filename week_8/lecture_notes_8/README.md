@@ -64,4 +64,8 @@ will search for cats on Google.
 
 ## HTML
 
-Hypertext Markup Language is a markup language used to define the elements that need to be displayed on a webpage. It contains `tags` and `attributes`. 
+Hypertext Markup Language is a markup language used to define the elements that need to be displayed on a webpage. It contains `tags` and `attributes`. The browser will read the content of the HTML top to bottom and left to right and build a tree in the computers memory.
+
+![](doc_structure.png)
+
+
