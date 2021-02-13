@@ -68,4 +68,11 @@ Hypertext Markup Language is a markup language used to define the elements that 
 
 ![](doc_structure.png)
 
+On the CS50 IDE we can run the page with its server by running:
+
+``` bash
+http-server 
+```
+
+The IDE will use port `8080`.
 
