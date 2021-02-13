@@ -15,3 +15,4 @@
 - [Week 5 - Data Structures](https://github.com/daczarne/harvard_cs50x/tree/main/week_5)  
 - [Week 6 - Python](https://github.com/daczarne/harvard_cs50x/tree/main/week_6)  
 - [Week 7 - SQL](https://github.com/daczarne/harvard_cs50x/tree/main/week_7)  
+- [Week 8 - HTML, CSS, JavaScript](https://github.com/daczarne/harvard_cs50x/tree/main/week_8)  
