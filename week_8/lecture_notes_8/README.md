@@ -83,3 +83,51 @@ We use Cascading Style Sheets to style the HTML.
 ## JavaScript
 
 We use JavaScript to control and/or modify the behaviour of our webpage. JS code is packaged to the client side and allows us to leverage the users computer to carry out part of the computation without having to send requests to the server.
+
+To declare a new vairable in JS we use
+
+``` js
+let counter = 0;
+```
+
+To increment the value of the `counter` variable we can use either of the following
+
+``` js
+counter = counter + 1;
+counter += 1;
+counter++;
+```
+
+Ifs syntax in JS is as follows
+
+``` js
+if (x < y)
+{
+  // Body
+}
+else if (x > y)
+{
+  // Body
+}
+else
+{
+  // Body
+}
+```
+
+Loops
+
+``` js
+while (true)
+{
+  // Body
+}
+```
+
+``` js
+for (let i = 0; i < 3; i++)
+{
+  // Body
+}
+```
+
