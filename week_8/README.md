@@ -97,15 +97,65 @@ Some status code are
 | Server Error | 503  | Service unavailable   | Server is currently unable to handle request   |
 | Server Error | 504  | Gateway timeout       | Server reached the waiting time for a response |
  
-## HTML
-
-
-## CSS
-
-
-
 ## JavaScript
 
+JS code uses `.js` file extensions. JS code runs on the client side of the application when the user visits the web page. JS code is included in the web page via the `<script>` tag using the `src` attribute.
+
+Iterate over the keys of an object
+
+``` js
+for (var key in object)
+{
+  // use object[key] in here;
+}
+```
+
+Iterate over the values of an object
+
+``` js
+for (var key of object)
+{
+  // use key in here;
+}
+```
+
+As an example, suppose we have an array with all the names of the days of the week. Looping over the `day` key with a `for in` will print out the indeces (since there are no keys defined). Looping over the `day` key with a `for in` loop will print out the names of the week.
+
+``` js
+var wkArray = ['sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+// Print indeces: 0, 1, ..., 6
+for (var day in wkArray)
+{
+  console.log(day);
+}
+// Print out day names: Sunday, Monday, ..., Saturday
+for (var day of wkArray)
+{
+  console.log(day);
+}
+```
+
+An **Event** in JS and HTML is a response to a user doing something on the page (like clicking, or horvering, or loading the page). JS has suppor for **event handlers**, which are *callback functions* that respond to HTML elements. Since everything in JS is an object, so too are events. An event object gets generated when the user's action triggers the event.
+
+Suppose we have the following event handlers
+
+```html
+<button onclick="alerrName(event);">Button 1</button>
+<button onclick="alerrName(event);">Button 2</button>
+```
+
+When the user clicks on either button, the `alertName` function will be called, and the `event` object will be passed to the function. This object contains all the information about what just happened. So, suppose the `alertName` function is as follows
+
+``` js
+function alertName(event)
+{
+  var trigger = event.srcElement;
+  alert('You clicked on ' + trigger.innerHTML);
+}
+```
+
+The variable `trigger` contains the elements source. That is, the HTML element that generated the event. This can be found in the event's object attribute called `srcElement`. We then use the built-in `alert` function to pop-up a message that tells the user that he/she clicked on a button. We used the `innerHTML` attribute of the `trigger` object to get what's inside the HTML tags, in this case, either `Button 1` or `Button 2`.
 
 ## DOM
 
+DOM stands for **Document Object Model**
