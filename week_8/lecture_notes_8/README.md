@@ -82,4 +82,4 @@ We use Cascading Style Sheets to style the HTML.
 
 ## JavaScript
 
-We use JavaScript to control and/or modify the behaviour of our webpage.
+We use JavaScript to control and/or modify the behaviour of our webpage. JS code is packaged to the client side and allows us to leverage the users computer to carry out part of the computation without having to send requests to the server.
