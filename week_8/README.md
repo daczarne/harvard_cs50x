@@ -158,4 +158,46 @@ The variable `trigger` contains the elements source. That is, the HTML element t
 
 ## DOM
 
-DOM stands for **Document Object Model**
+DOM stands for **Document Object Model**. This is a JavaScript object that describes the document. Suppose we have the following HTML page:
+
+``` html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, world</title>
+  </head>
+  <body>
+    <h2>Here's my page</h2>
+    <p>World, hello</p>
+    <a href="text.html">Link</a>
+  </body>
+</html>
+```
+
+When the page is loaded, JS will create an object (the DOM) that nests other objects in it, each one of which represents an HTML tag, as shown in the image bellow.
+
+![](dom.png)
+
+We can now use the methods from the DOM object to modify it and thus change how the site looks like. This is what creates the modern interactive websites. We can inspect the DOM by running `console.dir(document)` in the dev tools. Some of the properties that we can find there are:
+
+| DOM Property | Description                                                    |
+|:------------:|----------------------------------------------------------------|
+| innerHTML    | Holds the HTML inside a set of HTML tags                       |
+| nodeName     | Name of the HTML element or element's attribute                |
+| id           | The "id" attribute of an HTML element                          |
+| parentNode   | A referece to the node one level up in the DOM                 |
+| childNodes   | An array of references to the nodes one level down in the DOM  |
+| attributes   | An array of the attributes of an HTML element                  |
+| style        | An object encapsulating the CSS/HTML styling of an element     |
+
+
+The most common methods that we can use to manipulate this properties are
+
+
+| DOM Method               | Description                                                      |
+|:------------------------:|------------------------------------------------------------------|
+| getElementById(id)       | Gets the element with a given ID below this point in the DOM     |
+| getElementByTagName(tag) | Gets all elements with the given tag below this point in the DOM |
+| appendChild(node)        | Add a given node to the DOM below this point                     |
+| removeChild(node)        | Remove a specified child node from the DOM                       |
+
