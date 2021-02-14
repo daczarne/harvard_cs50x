@@ -45,7 +45,58 @@ When sending information from point `A` to point `B`, if anything goes wrong alo
 
 ## HTTP
 
+The Hypertext Transfer Protocol, **HTTP**, is an application layer protocol that specifies how the web-page requests must be made from the client to the server, and from the server back to the client. Other protocols include
 
+- **FTP:** File TransferPprotocol for how files are transfered
+
+- **SMTP:** Simple Mail Transfer Protocol for how emails are sent
+
+- **DDS:** Data Distribution Service
+
+- **RPD:** Remote Desktop Protocol for remotly accessing a computer
+
+- **XMPP:** Extensible Message and Presence Protocol for chat services
+
+For example, to request the home page of `cats.com` the client would request
+
+```
+GET / HTTP/1.1
+Host: cats.com
+```
+
+and the server would answer with
+
+```
+HTTP/1.1 200 OK
+Content-type: text/html
+```
+
+where the 200 status code means that all is OK. Other codes exist to signal that things didn't work out as expected. In more general terms, an HTTP request line should inculde
+
+```
+method request-target http-version
+```
+
+The server will in turn respond with 
+
+```
+http-version status
+```
+
+Some status code are
+
+| Class        | Code | Text                  | Comments                                       |
+|--------------|------|-----------------------|------------------------------------------------|
+| Success      | 200  | OK                    | All is well                                    |
+| Redirection  | 301  | Moved Permanently     | Page is not at a new location                  |
+| Redirection  | 302  | Found                 | Page we temporarily moved                      |
+| Client Error | 401  | Unauthorized          | Page requires login credentials                |
+| Client Error | 403  | Forbidden             | Server will not allow this request             |
+| Client Error | 404  | Not found             | Server can not found what was asked for        |
+| Server Error | 500  | Internal Server Error | Generic server failure                         |
+| Server Error | 503  | Service unavailable   | Server is currently unable to handle request   |
+| Server Error | 504  | Gateway timeout       | Server reached the waiting time for a response |
+ 
 ## HTML
 
 
