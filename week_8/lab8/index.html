@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>In 1825, Uruguay decalared its independence from which country/empire?</h3>
+                <button class="wrong">Spain</button>
+                <button class="wrong">Protugal</button>
+                <button class="wrong">United Kingdom</button>
+                <button class="right">Other</button>
+                <p id="response_1"></p>
+            </div>
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>From which empire did Uruguay decalred independence?</h3>
+                <input type="text"></input>
+                <button id="submit">Submit</button>
+                <p id="response_2"></p>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
