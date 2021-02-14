@@ -80,3 +80,6 @@ The IDE will use port `8080`.
 
 We use Cascading Style Sheets to style the HTML.
 
+## JavaScript
+
+We use JavaScript to control and/or modify the behaviour of our webpage.
