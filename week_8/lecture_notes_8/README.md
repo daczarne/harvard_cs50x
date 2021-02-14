@@ -132,5 +132,3 @@ for (let i = 0; i < 3; i++)
 ```
 
 With JS we have the ability to change the page in real time and react to what the user does. JS code can be added to the webpage in the `<script>` tag in either the `<head>` or the `<body>`. If in the `<head>`, it will be executed before the page loads for the first time. The best way is to factor it out into its own `.js` will and `src` it in a `<script>` tag at the bottom of the `<body>` tag.
-
-
