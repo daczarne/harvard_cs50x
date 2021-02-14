@@ -31,7 +31,17 @@ Data is separated into small packages. These packages are sent through the netwo
 
 ## TCP
 
-When sending information from point `A` to point `B`, if anything goes wrong along the way, TCP (Transmision Control Protocol) is responsible of re-requesting the missing pieces.
+When sending information from point `A` to point `B`, if anything goes wrong along the way, **TCP** (Transmision Control Protocol) is responsible of re-requesting the missing pieces. It also handles transmiting the package to where it needs to go in the machine. TCP achieves this by sending the package to the **port** assigned to the program/utility/service that it's trying to send information to. Some of the ports are so commonly used that they have been standardized in computers:
+
+- FTP (file transfer) uses port 21
+
+- SMTP (e-mail) uses port 25
+
+- DNS uses port 53
+
+- HTTP (web browsing) uses port 80
+
+- HTTPS (secure web browsing) uses port 443
 
 ## HTTP
 
