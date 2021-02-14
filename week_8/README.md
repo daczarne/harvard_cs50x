@@ -201,3 +201,15 @@ The most common methods that we can use to manipulate this properties are
 | appendChild(node)        | Add a given node to the DOM below this point                     |
 | removeChild(node)        | Remove a specified child node from the DOM                       |
 
+
+Because DOM manipulation can get quite verbose, we can use a library called **jQuery** to simplify. This library can allow us to simplify all client side scripting (DOM manipulation been just one of those things). For example, if we want change the color of an element with Id `colorDiv` in the document we would have to write the following code in vanilla-JS:
+
+```js
+document.getElementById('colorDiv').stryle.backgroundColor = 'green';
+```
+
+With jQuery we only write
+
+``` js
+$('#colorDiv').css('background-color', 'green');
+```
