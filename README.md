@@ -16,3 +16,7 @@
 - [Week 6 - Python](https://github.com/daczarne/harvard_cs50x/tree/main/week_6)  
 - [Week 7 - SQL](https://github.com/daczarne/harvard_cs50x/tree/main/week_7)  
 - [Week 8 - HTML, CSS, JavaScript](https://github.com/daczarne/harvard_cs50x/tree/main/week_8)  
+- [Security](https://github.com/daczarne/harvard_cs50x/tree/main/security)  
+- [Week 9 - Flask](https://github.com/daczarne/harvard_cs50x/tree/main/week_9)  
+- [Artificial Intelligence](https://github.com/daczarne/harvard_cs50x/tree/main/artificial_intelligence)  
+- [Week 10 - Ethics](https://github.com/daczarne/harvard_cs50x/tree/main/week_10)  
