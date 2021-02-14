@@ -25,9 +25,13 @@ The internt is just the set of rules (called protocols) that allow all the local
 
 ## IP
 
+The Internet Protocol (**IP**) controls how data is transmited between two points. Each network connects to a local **router**. The router contains a routing table that tells it where to go when it sees a specific address. Each router connects a local group of networks or routers to other networks or routers.
+
+Data is separated into small packages. These packages are sent through the network with the data plus the instructions on how to re-assemble all the packages. Not all packages sent from point `A` to point `B` will take the same route.
 
 ## TCP
 
+When sending information from point `A` to point `B`, if anything goes wrong along the way, TCP (Transmision Control Protocol) is responsible of re-requesting the missing pieces.
 
 ## HTTP
 
