@@ -86,7 +86,7 @@ http-version status
 Some status code are
 
 | Class        | Code | Text                  | Comments                                       |
-|--------------|------|-----------------------|------------------------------------------------|
+|:------------:|:----:|-----------------------|------------------------------------------------|
 | Success      | 200  | OK                    | All is well                                    |
 | Redirection  | 301  | Moved Permanently     | Page is not at a new location                  |
 | Redirection  | 302  | Found                 | Page we temporarily moved                      |
