@@ -30,3 +30,9 @@ def index():
   return render_template("index.html")
 ```
 
+Here, `app = Flask(__name__)` is just telling Flask to turn this code into a web application. So Flask will start listening on the assigned port. `@app.route("/")` sets the route (the URL). The `@` is just a decorator. To start the server, we run in the command line
+
+``` bash
+flask run
+```
+
