@@ -53,7 +53,7 @@ With Flask, we can factor out common content in HTML files. All these common dec
 </html>
 ```
 
-Here, `{% block body %}{% endblock %}` is just a special placeholder we use in Flask. The `index.html` file can now be boiled down to only the declarations of what it does (the form in the context of our hello app), and it will look something like this:
+Here, `{% block body %}{% endblock %}` is just Jinja syntax, a special placeholder we use in Flask. The `index.html` file can now be boiled down to only the declarations of what it does (the form in the context of our hello app), and it will look something like this:
 
 ``` html
 {% extends "layout.html" %}
