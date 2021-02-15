@@ -70,3 +70,27 @@ Here, `{% block body %}{% endblock %}` is just Jinja syntax, a special placehold
 
 Here `{% extends "layout.html" %}` is just telling Flask that it first needs to include everything that is in the `layout.html` file. Then, everything that needs to be placed inside the placeholder that we set in `layout.html`, needs to be declared in this file between `{% block body %}` and `{% endblock %}`, and Flask will take care of parsing everything as needed.
 
+## Sessions
+
+A session is a crucial part of modern web dev. It's what allows the server to remember that a user who has authenticated, is still loged in. Let's that the example of gmail. Everytime we visit, the browser sends a request like this
+
+``` txt
+GET / HTTP/1.1
+Host: gmail.com
+```
+
+and the server response might be something like follows
+
+``` txt
+HTTP/1.1 200 OK
+Content-Type: text/html
+Set-Cookie: session=value
+```
+
+Cookies are pieces of data or files that are placed on the device by a server that help the server remember that the user has been there before. These files usually just contain a large random value that uniquely identifies the user. So in the example reposonse, the `Set-Cookie` header takes a value of `session=value` where `session` is the name of the cookie and `value` is the user's identifier. After that, the browser will send back the cookie to the server with every request. So, after login, every request will look as follows
+
+``` txt
+GET / HTTP/1.1
+Host: gmail.com
+Cookie: session=value
+```
