@@ -31,12 +31,15 @@ def deregister():
 
 @app.route("/register", methods=["POST"])
 def register():
-
-    # Validate submission
+    # Check form
     name = request.form.get("name")
+    if not name:
+        return render_template("error.html", message="Missing name")
     sport = request.form.get("sport")
-    if not name or sport not in SPORTS:
-        return render_template("failure.html")
+    if not sport:
+        return render_template("error.html", message="Missing sport")
+    if sport not in SPORTS:
+        return render_template("error.html", message="Invalid sport")
 
     # Remember registrant
     db.execute("INSERT INTO registrants (name, sport) VALUES(?, ?)", name, sport)
