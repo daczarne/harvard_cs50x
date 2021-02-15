@@ -37,3 +37,36 @@ flask run
 ```
 
 In flas `request.args` is for GET, and `request.form` is for POST.
+
+With Flask, we can factor out common content in HTML files. All these common declarations need to be saved in `templates/layout.html`. This file will look something like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>hello</title>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>
+```
+
+Here, `{% block body %}{% endblock %}` is just a special placeholder we use in Flask. The `index.html` file can now be boiled down to only the declarations of what it does (the form in the context of our hello app), and it will look something like this:
+
+``` html
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <form action="/greet" method="get">
+        <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
+        <input type="submit">
+    </form>
+
+{% endblock %}
+```
+
+Here `{% extends "layout.html" %}` is just telling Flask that it first needs to include everything that is in the `layout.html` file. Then, everything that needs to be placed inside the placeholder that we set in `layout.html`, needs to be declared in this file between `{% block body %}` and `{% endblock %}`, and Flask will take care of parsing everything as needed.
+
