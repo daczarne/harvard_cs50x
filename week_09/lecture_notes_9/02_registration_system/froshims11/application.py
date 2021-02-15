@@ -1,5 +1,3 @@
-# Implements a registration form, storing registrants in a SQLite database
-
 from cs50 import SQL
 from flask import Flask, redirect, render_template, request
 
@@ -14,6 +12,7 @@ SPORTS = [
     "Volleyball",
     "Ultimate Frisbee"
 ]
+
 
 @app.route("/")
 def index():
