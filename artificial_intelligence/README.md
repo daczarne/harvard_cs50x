@@ -2,6 +2,9 @@
 
 [Minimax](#minimax)  
 [Search algorithms](#search-algorithms)  
+[Genetic algorithms](#genetic-algorithms)  
+[Neural networks](#neural-networks)  
+
 
 ## Minmax
 
@@ -51,4 +54,27 @@ In **informed search**, we use knowledge about the problem to find solutions mor
 **A* search**, pronounced “A star search”, uses both the heuristic value of the path, as well as the distance it has already gone for that path. A* search will be optimal if we have an accurate heuristic. Ideally the heuristic is quick to calculate, so the search can be efficient overall.
 
 ![](maze_a_star.png)
+
+> In AI, each decision maker is called an agent
+
+## Reinforcement Learning
+
+**Reinforcement Learning** is one type of machine learning. In **Maching Learning** the goal is to allow the computer to learn from experience. Each experience gets a value that tells the computer wheather it was a "good" or "bad" experience so that it can make better decisions the next time. We want ML systems to both *explore*, or try new actions, and *exploit*, or use actions it has done before that are safe.
+
+We can express this in the **Epsilon-Greedy Approach** were we assign a value for the probability of making a random choice (exploring) and a probability of using an exploit
+
+``` txt
+epsilon = 0.10
+if random() < epsilon:
+    make a random move
+else:
+    make the move with the highest value
+```
+
+## Genetic algorithms
+
+
+
+## Neutral networks
+
 
