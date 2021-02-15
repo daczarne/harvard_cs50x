@@ -36,3 +36,4 @@ Here, `app = Flask(__name__)` is just telling Flask to turn this code into a web
 flask run
 ```
 
+In flas `request.args` is for GET, and `request.form` is for POST.
