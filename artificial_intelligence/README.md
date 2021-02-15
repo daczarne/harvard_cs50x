@@ -73,8 +73,23 @@ else:
 
 ## Genetic algorithms
 
+Another approach is inspired by nature, where the most fit organisms survive and evolve over time. With **genetic algorithms**, many algorithms are created to try to solve some problem, and even though they might not be successful, the best ones will be mutated, or randomly changed, until we have a sufficiently good algorithm.
 
+``` txt
+make initial generation of candidates randomly
+repeat until successful:
+    for each candidate:
+        calculate candidate's fitness
+    remove least fit candidates
+    make new generation from remaining candidates
+```
+
+These algorithms might reach some bottleneck, or local maximum, where they can no longer be improved by random mutations, and only some other totally different algorithms can be better.
 
 ## Neutral networks
 
+A neural network is a collection of neurons. We can have some number of neurons, or units, storing some value and performing some calculation on it before passing it along. We can even have layers of units, each of which performing some calculation on its inputs, before passing its outputs on to the next.
 
+Deep learning refers to the use of these neural networks, combined with linear algebra, to solve some problem. Given enough input data, these neural networks can be trained to set its values and calculations to translate some inputs into outputs. The key to these algorithms is a large amount of data, so these neural networks can be more accurate.
+
+One concern with machine learning is that there isn’t a lot of interpretability, or ability for humans to understand what the neural network is doing to come up with its outputs.
