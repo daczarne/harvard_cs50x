@@ -1,7 +1,8 @@
 # Searches for shows
 
+from flask.wrappers import JSONMixin
 from cs50 import SQL
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
@@ -15,5 +16,6 @@ def index():
 
 @app.route("/search")
 def search():
-    shows = db.execute("SELECT * FROM shows WHERE title LIKE ?", "%" + request.args.get("q") + "%")
-    return render_template("search.html", shows=shows)
+    shows = db.execute("SELECT * FROM shows WHERE title LIKE ?",
+                       "%" + request.args.get("q") + "%")
+    return jsonify(shows)
