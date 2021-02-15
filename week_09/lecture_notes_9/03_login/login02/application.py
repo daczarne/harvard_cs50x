@@ -26,3 +26,9 @@ def login():
         # Redirect the user to /
         return redirect("/")
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session["name"] = None
+    return redirect("/")
