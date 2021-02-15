@@ -5,10 +5,10 @@
     <form action="/register" method="post">
         <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
         <select name="sport">
-            <option disabled selected value="">Sport</option>
-            {% for sport in sports %}
-                <option value="{{ sport }}">{{ sport }}</option>
-            {% endfor %}
+            <option value="Dodgeball">Dodgeball</option>
+            <option value="Football">Football</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Ultimate Frisbee">Ultimate Frisbee</option>
         </select>
         <input type="submit" value="Register">
     </form>
