@@ -93,10 +93,8 @@ def login():
 @app.route("/logout")
 def logout():
     """Log user out"""
-
     # Forget any user_id
     session.clear()
-
     # Redirect user to login form
     return redirect("/")
 
@@ -119,7 +117,10 @@ def register():
         confirm_password = request.form.get("confirm_password")
         # Check if the user name already exists
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
-        if len(rows) > 0:
+        # Check that there acctually is a user_name
+        if len(user_name) == 0:
+            return apology("Please provide a user name")
+        elif len(rows) > 0:
             return apology("User name already exists")
         # Check that password is at least 4 characters long
         elif len(password) < 4:
@@ -129,9 +130,14 @@ def register():
             return apology("Password dosen't match")
         # If all is ok, hash the password and register the user in the db
         else:
-            hashed_password = generate_password_hash("password")
+            hashed_password = generate_password_hash(password)
             db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", user_name, hashed_password)
-            return render_template("index.html")
+            # Get the user so that it can be redirected to the homepage
+            rows = db.execute("SELECT * FROM users WHERE username = ?", user_name)
+            # Remember which user has logged in
+            session["user_id"] = rows[0]["id"]
+            # Redirect user to home page
+            return redirect("/")
     # Else, if the user is visiting the register page
     else:
         return render_template("register.html")
