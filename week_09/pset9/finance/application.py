@@ -53,7 +53,30 @@ def index():
 @login_required
 def buy():
     """Buy shares of stock"""
-    return apology("TODO")
+    if request.method == "POST":
+        # Get the request parameters
+        symbol = request.form.get("symbol").upper()
+        shares = int(request.form.get("shares"))
+        # Get the quote of the requested symbol
+        quote = lookup(symbol)
+        # If that stock does not exist, then throw an error
+        if len(quote) == None:
+            return apology(f"{symbol} does not exist", code = 404)
+        # Check how much cash the user has got left
+        cash = float(db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"])
+        # Calculate the total cost of the purchase
+        total = shares * quote["price"]
+        # If the user can do the purchase...
+        if total >= cash:
+            # Inform the user the he/she is too poor for that
+            return apology("Insuficient funds", code = 403)
+        else:
+            # Do the purchase and register it on the db
+            db.execute("UPDATE users SET cash = ? WHERE id = ?", cash - total, session["user_id"])
+            return redirect("/")
+    # Render the Buy template
+    else:
+        return render_template("buy.html")
 
 
 @app.route("/history")
@@ -106,8 +129,10 @@ def quote():
     if request.method == "POST":
         symbol = request.form.get("symbol")
         quote = lookup(symbol)
-        print(quote)
-        return render_template("quote.html", quote=quote, usd=usd)
+        if quote != None:
+            return render_template("quote.html", quote=quote, usd=usd)
+        else:
+            return apology("That stock does not exist", code = 404)
     else:
         return render_template("quote.html")
 
