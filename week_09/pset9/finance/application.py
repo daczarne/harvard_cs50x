@@ -46,7 +46,20 @@ if not os.environ.get("API_KEY"):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    return apology("TODO")
+    # Get users assets
+    assets = db.execute("SELECT asset_symbol, asset_name, asset_qty FROM portfolios WHERE user_id = ?", session["user_id"])
+    # Update assets price
+    for asset in assets:
+        quote = lookup(asset["asset_symbol"])
+        asset["price"] = quote["price"]
+    # Get users cash
+    cash = float(db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"])
+    # Calculate total
+    total = cash
+    for asset in assets:
+        total += asset["price"] * asset["asset_qty"]
+    # Return page
+    return render_template("index.html", assets=assets, cash=cash, total=total, usd=usd)
 
 
 @app.route("/buy", methods=["GET", "POST"])
