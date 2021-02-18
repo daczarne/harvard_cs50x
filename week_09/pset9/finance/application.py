@@ -60,7 +60,7 @@ def buy():
         # Get the quote of the requested symbol
         quote = lookup(symbol)
         # If that stock does not exist, then throw an error
-        if len(quote) == None:
+        if len(quote) is None:
             return apology(f"{symbol} does not exist", code = 404)
         # Check how much cash the user has got left
         cash = float(db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"])
@@ -71,8 +71,26 @@ def buy():
             # Inform the user the he/she is too poor for that
             return apology("Insuficient funds", code = 403)
         else:
-            # Do the purchase and register it on the db
+            # Register the transaction
+            db.execute(
+                "INSERT INTO transactions (user_id, asset_symbol, asset_name, asset_qty, asset_price) VALUES(?, ?, ?, ?, ?)",
+                session["user_id"], symbol, quote["name"], shares, quote["price"]
+            )
+            # Update user portfolio
+            rows = db.execute("SELECT * FROM portfolios WHERE user_id = ? AND asset_symbol = ?", session["user_id"], symbol)
+            if len(rows) == 0:
+                db.execute(
+                    "INSERT INTO portfolios (user_id, asset_symbol, asset_name, asset_qty) VALUES(?, ?, ?, ?)",
+                    session["user_id"], symbol, quote["name"],shares
+                )
+            else:
+                db.execute(
+                    "UPDATE portfolios SET asset_qty = ? WHERE user_id = ? AND asset_symbol = ?",
+                    int(rows[0]["asset_qty"]) + shares, session["user_id"], symbol
+                )
+            # Update user cash
             db.execute("UPDATE users SET cash = ? WHERE id = ?", cash - total, session["user_id"])
+            # Redirect user to index
             return redirect("/")
     # Render the Buy template
     else:
@@ -103,7 +121,7 @@ def login():
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            return apology("Invalid username and/or password", 403)
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
         # Redirect user to home page
