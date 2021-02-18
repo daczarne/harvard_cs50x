@@ -209,7 +209,41 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-    return apology("TODO")
+    if request.method == "POST":
+        # Get the request parameters
+        symbol = request.form.get("symbol").upper()
+        shares = int(request.form.get("shares"))
+        # Get the quote of the requested symbol
+        quote = lookup(symbol)
+        # If that stock does not exist, then throw an error
+        if len(quote) is None:
+            return apology(f"{symbol} does not exist", code = 404)
+        price = float(quote["price"])
+        # Check how much cash the user has got left
+        cash = float(db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"])
+        # Chack that the user has enough stock to sell
+        asset_stock = db.execute("SELECT asset_qty FROM portfolios WHERE user_id = ? AND asset_symbol = ?", session["user_id"], symbol)
+        asset_stock = int(asset_stock[0]["asset_qty"])
+        if shares > asset_stock:
+            # If the user does not have enough stock, reject the transaction
+            return apology("You can't sell an amount higher than what you own", code = 403)
+        else:
+            # Calculate the cash from the sale
+            sale_income = shares * price
+            # Update users cash
+            db.execute("UPDATE users SET cash = ? WHERE id = ?", sale_income + cash, session["user_id"])
+            # Update users portfolio
+            db.execute("UPDATE portfolios SET asset_qty = ? WHERE user_id = ? AND asset_symbol = ?", asset_stock - shares, session["user_id"], symbol)
+            # Register the transaction
+            db.execute(
+                "INSERT INTO transactions (user_id, asset_symbol, asset_name, asset_qty, asset_price) VALUES(?, ?, ?, ?, ?)",
+                session["user_id"], symbol, quote["name"], -1 * shares, price
+            )
+            # Refirect the user to index
+            return redirect("/")
+        # Register the transaction
+    else:
+        return render_template("sell.html")
 
 
 def errorhandler(e):
