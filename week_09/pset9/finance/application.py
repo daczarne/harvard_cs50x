@@ -69,12 +69,22 @@ def buy():
     if request.method == "POST":
         # Get the request parameters
         symbol = request.form.get("symbol").upper()
-        shares = int(request.form.get("shares"))
+        shares = request.form.get("shares")
+        # Check empty
+        if shares == "":
+            return apology("Incomplete form")
+        shares = int(shares)
+        # Check that shares is non-negative
+        if shares < 0:
+            return apology("Can only buy a positive amount of shares")
+        # Check that shares is integer
+        if not isinstance(shares, int):
+            return apology("Integer please")
         # Get the quote of the requested symbol
         quote = lookup(symbol)
         # If that stock does not exist, then throw an error
-        if len(quote) is None:
-            return apology(f"{symbol} does not exist", code = 404)
+        if quote is None:
+            return apology(f"{symbol} does not exist")
         # Check how much cash the user has got left
         cash = float(db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"])
         # Calculate the total cost of the purchase
@@ -82,7 +92,7 @@ def buy():
         # If the user can do the purchase...
         if total >= cash:
             # Inform the user the he/she is too poor for that
-            return apology("Insuficient funds", code = 403)
+            return apology("Insuficient funds")
         else:
             # Register the transaction
             db.execute(
@@ -94,7 +104,7 @@ def buy():
             if len(rows) == 0:
                 db.execute(
                     "INSERT INTO portfolios (user_id, asset_symbol, asset_name, asset_qty) VALUES(?, ?, ?, ?)",
-                    session["user_id"], symbol, quote["name"],shares
+                    session["user_id"], symbol, quote["name"], shares
                 )
             else:
                 db.execute(
@@ -161,12 +171,14 @@ def logout():
 def quote():
     """Get stock quote."""
     if request.method == "POST":
+        if not request.form.get("symbol"):
+            return apology("That stock does not exist")
         symbol = request.form.get("symbol")
         quote = lookup(symbol)
         if quote != None:
             return render_template("quote.html", quote=quote, usd=usd)
         else:
-            return apology("That stock does not exist", code = 404)
+            return apology("That stock does not exist")
     else:
         return render_template("quote.html")
 
@@ -179,7 +191,7 @@ def register():
         # Get the form info
         user_name = request.form.get("username")
         password = request.form.get("password")
-        confirm_password = request.form.get("confirm_password")
+        confirm_password = request.form.get("confirmation")
         # Check if the user name already exists
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
         # Check that there acctually is a user_name
@@ -244,7 +256,6 @@ def change_password():
         return render_template("change_password.html")
 
 
-
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
@@ -257,23 +268,29 @@ def sell():
         quote = lookup(symbol)
         # If that stock does not exist, then throw an error
         if len(quote) is None:
-            return apology(f"{symbol} does not exist", code = 404)
+            return apology(f"{symbol} does not exist")
         price = float(quote["price"])
         # Check how much cash the user has got left
         cash = float(db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"])
-        # Chack that the user has enough stock to sell
-        asset_stock = db.execute("SELECT asset_qty FROM portfolios WHERE user_id = ? AND asset_symbol = ?", session["user_id"], symbol)
+        # Check that the user has enough stock to sell
+        asset_stock = db.execute(
+            "SELECT asset_qty FROM portfolios WHERE user_id = ? AND asset_symbol = ?",
+            session["user_id"], symbol
+        )
         asset_stock = int(asset_stock[0]["asset_qty"])
         if shares > asset_stock:
             # If the user does not have enough stock, reject the transaction
-            return apology("You can't sell an amount higher than what you own", code = 403)
+            return apology("You can't sell an amount higher than what you own")
         else:
             # Calculate the cash from the sale
             sale_income = shares * price
             # Update users cash
             db.execute("UPDATE users SET cash = ? WHERE id = ?", sale_income + cash, session["user_id"])
             # Update users portfolio
-            db.execute("UPDATE portfolios SET asset_qty = ? WHERE user_id = ? AND asset_symbol = ?", asset_stock - shares, session["user_id"], symbol)
+            db.execute(
+                "UPDATE portfolios SET asset_qty = ? WHERE user_id = ? AND asset_symbol = ?",
+                asset_stock - shares, session["user_id"], symbol
+            )
             # Register the transaction
             db.execute(
                 "INSERT INTO transactions (user_id, asset_symbol, asset_name, asset_qty, asset_price) VALUES(?, ?, ?, ?, ?)",
