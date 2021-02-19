@@ -208,6 +208,43 @@ def register():
         return render_template("register.html")
 
 
+@app.route("/change_password", methods=["GET", "POST"])
+def change_password():
+    """Change password"""
+    # If the user is submitting a form
+    if request.method == "POST":
+        # Get the form info
+        user_name = request.form.get("username")
+        old_password = request.form.get("old_password")
+        new_password = request.form.get("new_password")
+        confirm_new_password = request.form.get("confirm_new_password")
+        # Get user info
+        user_info = db.execute("SELECT * FROM users WHERE username = ?", user_name)
+        # Check that there acctually is a user_name
+        if len(user_info) == 0:
+            return apology("Invalid user name or password")
+        # Check that password is at least 4 characters long
+        elif len(new_password) < 4:
+            return apology("Password must be at least 4 characters long")
+        # Check that password and confirm_password are the same
+        elif not new_password == confirm_new_password:
+            return apology("Password dosen't match")
+        # If all is ok...
+        elif not check_password_hash(user_info[0]["hash"], old_password):
+            return apology("Invalid username or password")
+        else:
+            hashed_new_password = generate_password_hash(new_password)
+            db.execute("UPDATE users SET hash = ? WHERE username = ?", hashed_new_password, user_name)
+            # Remember which user has logged in
+            session["user_id"] = user_info[0]["id"]
+            # Redirect user to home page
+            return redirect("/")
+    # Else, if the user is visiting the change password page
+    else:
+        return render_template("change_password.html")
+
+
+
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
