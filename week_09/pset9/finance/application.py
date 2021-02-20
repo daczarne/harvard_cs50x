@@ -73,7 +73,10 @@ def buy():
         # Check empty
         if shares == "":
             return apology("Incomplete form")
-        shares = int(shares)
+        try:
+            shares = int(shares)
+        except ValueError as ex:
+            return apology("Invalid number of shares")
         # Check that shares is non-negative
         if shares < 0:
             return apology("Can only buy a positive amount of shares")
@@ -260,6 +263,8 @@ def change_password():
 @login_required
 def sell():
     """Sell shares of stock"""
+    # Get users list of assets
+    assets = db.execute("SELECT asset_symbol FROM portfolios WHERE user_id = ?", session["user_id"])
     if request.method == "POST":
         # Get the request parameters
         symbol = request.form.get("symbol").upper()
@@ -300,7 +305,8 @@ def sell():
             return redirect("/")
         # Register the transaction
     else:
-        return render_template("sell.html")
+        print(assets)
+        return render_template("sell.html", assets=assets)
 
 
 def errorhandler(e):
