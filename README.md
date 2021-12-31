@@ -1,7 +1,5 @@
 # Harvard's CS50 on Edx
 
-![maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
-
 ![github repo size](https://img.shields.io/github/repo-size/daczarne/harvard_cs50x)
 ![github code size](https://img.shields.io/github/languages/code-size/daczarne/harvard_cs50x)
 
